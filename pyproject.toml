@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mla-mnist-vit"
+version = "0.1.0"
+description = "A clean PyTorch implementation of Multi-Head Latent Attention (MLA) inside a small Vision Transformer trained on MNIST."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Repository contributors"}
+]
+dependencies = [
+  "torch>=2.2",
+  "torchvision>=0.17",
+  "matplotlib>=3.8",
+  "numpy>=1.26"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6"
+]
+
+[project.scripts]
+mla-train = "mla_mnist.training:main"
+mla-evaluate = "mla_mnist.evaluation:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

@@ -37,16 +37,13 @@ Causal masking remains available in the MLA module for testing and decoder-style
 ```text
 MNIST image (1 × 28 × 28)
         │
-        ▼
 PatchEmbedding
 Conv2d(kernel=7, stride=7)
         │
-        ▼
 16 image patches × hidden_size
         │
         ├── prepend learned [CLS] token
         ├── add learned positional embeddings
-        ▼
 TransformerEncoderBlock × N
         │
         ├── RMSNorm
@@ -60,13 +57,10 @@ TransformerEncoderBlock × N
         ├── MLP
         └── residual
         │
-        ▼
 [CLS] representation
         │
-        ▼
 RMSNorm + Linear(10)
         │
-        ▼
 MNIST logits
 ```
 
